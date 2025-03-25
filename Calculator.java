@@ -23,19 +23,20 @@ public class Calculator {
     }
 
     static int pow(int a, int b) {
+        int result = 1;
         for (int i = 1; i <= b; i++) {
-            a *= a;
+            result *= a;
         }
-        return a;
+        return result;
     }
 
     static double circleArea(int a) {
-        double area = a*a*3.14;
+        double area = a*a*(Math.PI);
         return area;
     }
 
     static double circlePerimeter(int a) {
-        double perimeter = 2*a*3.14;
+        double perimeter = 2*a*(Math.PI);
         return perimeter;
     }
 
@@ -55,29 +56,20 @@ public class Calculator {
 
     }
 
-    static int areaSquare(int a) {
-        return a*a;
-    }
-
-    static int perimeterSquare(int a) {
-        return 4*a;
-    }
-
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Choose operation: ");
         System.out.println("1- Addition ");
         System.out.println("2- Subtraction ");
         System.out.println("3- Multiplication ");
         System.out.println("4- Division ");
         System.out.println("5- Modulus");
-        System.out.println("5- Power: ");
-        System.out.println("6- Area and Perimeter of Rectangle ");
+        System.out.println("6- Power: ");
         System.out.println("7- Area and Perimeter of Circle ");
-        System.out.println("8- Area of Triangle ");
-        System.out.println("9- Area and Perimeter of Square ");
+        System.out.println("8- Area and Perimeter of Rectangle ");
+        System.out.println("9- Area of Triangle ");
         System.out.println("0- Exit");
+        System.out.print("Choose operation: ");
         int op = sc.nextInt();
 
         switch(op) {
@@ -107,7 +99,10 @@ public class Calculator {
                 int a4 = sc.nextInt();
                 System.out.println("Enter the second number: ");
                 int b4 = sc.nextInt();
-                System.out.print("Result: " + divide(a4, b4));
+                if (b4 == 0) System.out.println("Infinity");
+                else {
+                    System.out.print("Result: " + divide(a4, b4));
+                }
                 break;
             case 5:
                 System.out.println("Enter the first number: ");
@@ -115,6 +110,7 @@ public class Calculator {
                 System.out.println("Enter the second number: ");
                 int b5 = sc.nextInt();
                 System.out.print("Result: " + modulus(a5, b5));
+                break;
             case 6:
                 System.out.println("Enter the number to be exponentiated: ");
                 int a6 = sc.nextInt();
@@ -125,11 +121,31 @@ public class Calculator {
             case 7:
                 System.out.println("Enter the radius of the circle: ");
                 int a7 = sc.nextInt();
-
+                System.out.println("Area: " + circleArea(a7));
+                System.out.println("Perimeter: " + circlePerimeter(a7));
+                break;
+            case 8:
+                System.out.println("Enter the short side of the rectangle: ");
+                int a8 = sc.nextInt();
+                System.out.println("Enter the long side of the rectangle: ");
+                int b8 = sc.nextInt();
+                System.out.println("Area: " + rectangleArea(a8, b8));
+                System.out.println("Perimeter: " + rectanglePerimeter(a8, b8));
+                break;
+            case 9:
+                System.out.println("Enter the bottom side of the triangle: ");
+                int a9 = sc.nextInt();
+                System.out.println("Enter the height of the triangle: ");
+                int b9 = sc.nextInt();
+                System.out.print("Result: " + areaTriangle(a9, b9));
+                break;
+            case 0:
+                System.out.println("Exiting...");
+                sc.close();
+                break;
+            default:
+                System.out.println("Invalid operation");
         }
-
-
-        int a = sc.nextInt();
 
     }
 }
